@@ -1,4 +1,5 @@
 <?php
+namespace App\Modules\Api\Library;
 /**
  * Utils Class
  * A Class for Util functions.

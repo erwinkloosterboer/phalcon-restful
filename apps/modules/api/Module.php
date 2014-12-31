@@ -20,7 +20,7 @@ class Module implements ModuleDefinitionInterface
         $loader->registerNamespaces(array(
             'App\Modules\Api\Controllers' => __DIR__ . '/controllers/',
             'App\Modules\Api\Resources' => __DIR__ . '/resources/',
-            'App\Library' => __DIR__ . '/../library/',
+            'App\Modules\Api\Library' => __DIR__ .'/library/',
             'App\Models\Entities' => $this->getConfig()->application->modelsEntitiesDir,
         ));
 
