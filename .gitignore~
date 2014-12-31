@@ -1,7 +1,0 @@
-./vagrant
-.project
-.metadata
-._*
-.DS_Store
-/public/files/*
-!/public/files/empty

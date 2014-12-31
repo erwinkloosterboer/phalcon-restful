@@ -6,3 +6,4 @@
 .vagrant
 .idea
 *.swp
+*~
