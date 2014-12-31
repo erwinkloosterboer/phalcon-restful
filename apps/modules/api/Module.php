@@ -8,12 +8,12 @@ use Phalcon\Mvc\ModuleDefinitionInterface;
 
 class Module implements ModuleDefinitionInterface
 {
+    protected $config;
     /**
      * Registers the module auto-loader
      */
     public function registerAutoloaders(\Phalcon\DiInterface $dependencyInjector=null)
     {
-    	$config = include __DIR__ . "/../../config/constants.php";
         $loader = new Loader();
 		
 
@@ -21,9 +21,7 @@ class Module implements ModuleDefinitionInterface
             'App\Modules\Api\Controllers' => __DIR__ . '/controllers/',
             'App\Modules\Api\Resources' => __DIR__ . '/resources/',
             'App\Library' => __DIR__ . '/../library/',
-            'App\Models\Entities' => $config->application->modelsEntitiesDir,
-            'App\Models\Services' => $config->application->modelsServicesDir,
-            'App\Models\Repositories' => $config->application->modelsRepositoriesDir
+            'App\Models\Entities' => $this->getConfig()->application->modelsEntitiesDir,
         ));
 
         $loader->register();
@@ -34,10 +32,10 @@ class Module implements ModuleDefinitionInterface
      *
      * @param \Phalcon\DiInterface $di
      */
-	public function registerServices( $di)
+	public function registerServices($di)
     {
-		$config = include __DIR__ . "/../../config/constants.php";
-		
+		$config = $this->getConfig();
+
 		//Redefining Dispatcher
 		$di['dispatcher'] = function() {
 			$dispatcher = new \Phalcon\Mvc\Dispatcher();
@@ -61,5 +59,12 @@ class Module implements ModuleDefinitionInterface
                 "dbname" 	=> $config->database->dbname,
             ));
         };
+    }
+
+    protected function getConfig(){
+        if(!isset($this->config)){
+            $this->config = include __DIR__ . "/../../config/constants.php";
+        }
+        return $this->config;
     }
 }
