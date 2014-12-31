@@ -1,8 +1,7 @@
+./vagrant
 .project
 .metadata
 ._*
 .DS_Store
 /public/files/*
-.vagrant
-.idea
-*.swp
+!/public/files/empty

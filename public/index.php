@@ -26,23 +26,6 @@ try {
 	    return $url;
 	});
 	
-	// Setting Session
-	$di->set('session', function(){
-		$session = new SessionAdapter();
-	    $session->start();
-	
-	    return $session;
-	});
-	
-	// Setting Flash Messages
-	$di->set('flash', function(){
-		return new \Phalcon\Flash\Session(array(
-			'error' 	=> 'alert alert-error',
-			'success' 	=> 'alert alert-success',
-			'notice' 	=> 'alert alert-info',
-	    ));
-	});
-	
 	// Register Application Directories
 	$loader = new \Phalcon\Loader();
 	$loader->registerDirs(

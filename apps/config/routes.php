@@ -12,23 +12,35 @@ $router->removeExtraSlashes(TRUE);
 /**
  * Default Routes
  * */
-$router->setDefaultModule("frontend");
+$router->setDefaultModule("api");
+$router->setDefaultController("api");
 
-$router->add("/api/crud/:params", array(
+//$router->add("/api/crud/:params", array(
+//	'module' 		=> 'api',
+//	'controller' 	=> 'crud',
+//	'action' 		=> 'index',
+//	'params'		=> 1
+//));
+
+$router->add("/{resource}", array(
 	'module' 		=> 'api',
-	'controller' 	=> 'crud',
+	'controller' 	=> 'api',
 	'action' 		=> 'index',
-	'params'		=> 1
 ));
 
+$router->add("/{resource}/{id}.*", array(
+	'module' 		=> 'api',
+	'controller' 	=> 'api',
+	'action' 		=> 'index',
+));
 
-$router->add('/user/:action',array(
-	'module' 		=> 'frontend',
-	'controller' 	=> 'user',
-	'action' 		=> '1'
-));
-$router->add('/galeria/:action',array(
-	'module' 		=> 'frontend',
-	'controller' 	=> 'galeria',
-	'action' 		=> '1'
-));
+//$router->add('/user/:action',array(
+//	'module' 		=> 'frontend',
+//	'controller' 	=> 'user',
+//	'action' 		=> '1'
+//));
+//$router->add('/galeria/:action',array(
+//	'module' 		=> 'frontend',
+//	'controller' 	=> 'galeria',
+//	'action' 		=> '1'
+//));

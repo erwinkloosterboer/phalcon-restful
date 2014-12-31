@@ -11,18 +11,19 @@ class Module implements ModuleDefinitionInterface
     /**
      * Registers the module auto-loader
      */
-    public function registerAutoloaders()
+    public function registerAutoloaders(\Phalcon\DiInterface $dependencyInjector=null)
     {
     	$config = include __DIR__ . "/../../config/constants.php";
         $loader = new Loader();
 		
 
         $loader->registerNamespaces(array(
-            'App\Modules\Api\Controllers' 	   => __DIR__ . '/controllers/',
-            'App\Library' 	   				   => __DIR__ . '/../library/',
-            'App\Models\Entities' 			   => $config->application->modelsEntitiesDir,
-            'App\Models\Services' 			   => $config->application->modelsServicesDir,
-            'App\Models\Repositories' 		   => $config->application->modelsRepositoriesDir
+            'App\Modules\Api\Controllers' => __DIR__ . '/controllers/',
+            'App\Modules\Api\Resources' => __DIR__ . '/resources/',
+            'App\Library' => __DIR__ . '/../library/',
+            'App\Models\Entities' => $config->application->modelsEntitiesDir,
+            'App\Models\Services' => $config->application->modelsServicesDir,
+            'App\Models\Repositories' => $config->application->modelsRepositoriesDir
         ));
 
         $loader->register();
@@ -31,16 +32,16 @@ class Module implements ModuleDefinitionInterface
     /**
      * Registers the module-only services
      *
-     * @param Phalcon\DI $di
+     * @param \Phalcon\DiInterface $di
      */
-	public function registerServices($di)
+	public function registerServices( $di)
     {
 		$config = include __DIR__ . "/../../config/constants.php";
 		
 		//Redefining Dispatcher
 		$di['dispatcher'] = function() {
 			$dispatcher = new \Phalcon\Mvc\Dispatcher();
-			$dispatcher->setDefaultNamespace("App\Modules\Api\Controllers");
+			$dispatcher->setDefaultNamespace("App\\Modules\\Api\\Controllers");
 			return $dispatcher;
 		};
 
