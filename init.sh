@@ -70,10 +70,10 @@ sudo mv composer.phar /usr/local/bin/composer
 #
 cd ~
 echo '<VirtualHost *:80>
-        DocumentRoot /vagrant/public_html
+        DocumentRoot /vagrant/public
 	</VirtualHost>
 
-	<Directory "/vagrant/public_html">
+	<Directory "/vagrant/public">
 	        Options Indexes Followsymlinks
 		        AllowOverride All
 			        Require all granted
