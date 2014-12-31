@@ -116,4 +116,3 @@ sudo a2ensite vagrant
 sudo a2dissite 000-default
 sudo service apache2 reload
 sudo service apache2 restart
-sudo service mongodb restart
