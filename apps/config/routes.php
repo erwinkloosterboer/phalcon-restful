@@ -22,13 +22,13 @@ $router->setDefaultController("api");
 //	'params'		=> 1
 //));
 
-$router->add("/{resource}", array(
+$router->add("/{resource:[A-z0-9]+}", array(
 	'module' 		=> 'api',
 	'controller' 	=> 'api',
 	'action' 		=> 'index',
 ));
 
-$router->add("/{resource}/{id}.*", array(
+$router->add("/{resource:[A-z0-9]+}/{id}.*", array(
 	'module' 		=> 'api',
 	'controller' 	=> 'api',
 	'action' 		=> 'index',
